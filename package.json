@@ -1,0 +1,14 @@
+{
+  "name": "serial-program",
+  "version": "0.0.0",
+  "description": "SerialProgram",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "serialport": "^9.1.0",
+    "ws": "^7.5.0"
+  }
+}
