@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+let button = document.querySelector(".button");
 
 var server = require('http').createServer(app);
 
@@ -27,14 +28,26 @@ parser.on('data', readSerialData);  // called when there's new data incoming
 // ------------------------ Serial event functions:
 // this is called when the serial port is opened:
 function showPortOpen() {
-    console.log('port open. Baudrate: ' + myPort.baudRate);
+    console.log('Serial port ' + portName + ' is opened. Baudrate: ' + myPort.baudRate);
 }
 
+var buf = new Uint8Array(24);
+var dataNum = 0;
 // this is called when new data comes into the serial port:
 function readSerialData(data) {
     // if there are webSocket connections, send the serial data
     // to all of them:
+    //if (data.length != 15)
+    //    console.log(data);
+    //else {
+    //    console.log(data.length);
+    //    console.log(data);
+    //}
     console.log(data);
+    for (var i = 0; i < data.length; i++) {
+        buf[i] = data[i];
+    }
+    console.log(buf, data.length);
     if (connections.length > 0) {
         broadcast(data);
     }
@@ -80,4 +93,4 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
 })
 
-server.listen(3000, () => console.log(`Lisening on port :3000`))
+server.listen(3000, () => console.log(`Listening on port :3000`))

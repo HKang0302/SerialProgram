@@ -7,13 +7,15 @@
             color: brown;
             font-weight: bold;
             margin-bottom: 5px;
+            margin-right: 10px;
         }
         .container {
-            width: 40%;
+            width: 100%;
+            height: 40px;
         }
         .left-pane {
-            width: 50%;
-            float: left;
+            width: 40%;
+            float: left;    
         }
         .right-pane {
             width: 50%;
@@ -22,23 +24,55 @@
         .send-message {
             clear: both;
         }
+        .serial-box{
+            box-sizing: border-box;
+            width: 50%;
+            height: 70%;
+            border: solid brown 3px;
+            padding: 5px
+        }
     </style>
 </head>
 <body>
-    <h1>Simple Serial Program</h1>
-
-    <form method='GET' action="/getmessage">
-        <div class="container">
-            <div class="prompt left-pane">
-                <span>Send Message</span>
-            </div>
-            <div class="right-pane">
-                <input type="text" id="firstname" name="firstname" />
-                <div class="send-message">
-                    <input type="submit" value="SEND" />
-                </div>
-            </div>
+    <h1>SWT Serial Program (Test Ver.)</h1>
+    <div class="container">
+        <div class="prompt">
+            <span>Device</span>
+            <select name="ports" id="portNum">
+                <option value="COM1">COM1</option>
+                <option value="COM2">COM2</option>
+                <option value="COM3">COM3</option>
+                <option value="COM4">COM4</option>
+                <option value="COM5">COM5</option>
+                <option value="COM6">COM6</option>
+                <option value="COM7">COM7</option>
+                <option value="COM8">COM8</option>
+                <option value="COM9">COM9</option>
+                <option value="COM10">COM10</option>
+                <option value="COM11">COM11</option>
+                <option value="COM12">COM12</option>
+                <option value="COM13">COM13</option>
+                <option value="COM14">COM14</option>
+            </select>
+            <span>Baudrate</span>
+            <select name="brate" id="brate">
+                <option value="9600">9600</option>
+            </select>
+            <button onclick="">Open Port</button>
+            <button onclick="" disabled>Close Port</button>
         </div>
-    </form>
+        <div class="prompt">
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="prompt left-pane">
+            <span>Send Message</span>
+            <input type="text" id="message" name="message" size="40" />
+            <button id="msgBtn" onclick="alert('send message')" disabled>SEND</button>
+        </div>
+    </div>
+    <div class="serial-box">
+    </div>
 </body>
 </html>
